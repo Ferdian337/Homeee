@@ -1,0 +1,73 @@
+/* landing page */
+
+.logo-utama {
+    max-width: 100%;
+    max-height: 250px;
+}
+
+.cari-homestay{
+    margin-top:5px;
+}
+
+body{
+    background-color: #c7c7c7;
+}
+
+#header{
+    background-color: #363636;
+}
+#footer{
+    margin-top: 5px;
+    position: bottom;
+    bottom: 0;  
+    width: 100%;
+    height: 50px;
+    background-color:#363636;
+    color: white;
+}
+
+.crsl-gambar{
+    height: 500px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+
+.cari-h{
+    padding: 25px 25px 25px 25px;
+    background-color: dimgray;
+}
+
+.redokendasi-h{
+    margin: 25px 25px 25px 25px;
+}
+
+.img-log{
+    height: 100%;
+}
+
+/* pengelola */
+.kelola-card{
+    margin-top:5px;
+}
+
+.img-dft{
+    /* height : 300px; */
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.img-kl{
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* penyewa */
+
+.img-tmplcari{
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+}
