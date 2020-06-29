@@ -33,6 +33,7 @@ route::get('/rekeningpgl', 'PengelolaController@rekeningpgl')->middleware('auth:
 route::post('/storerekeningpgl', 'PengelolaController@storerekeningpgl')->middleware('auth:pengelola');
 route::get('/hapusrekeningpgl/{id}', 'PengelolaController@hapusrekeningpgl')->middleware('auth:pengelola');
 route::get('/kelolaht/detailht/{id}', 'PengelolaController@detailht')->middleware('auth:pengelola');
+route::get('/dashboard', 'dashboard_controller@index');
 
 // route penyewa
 route::get('/daftarpnw', 'PenyewaController@daftarpnw')->middleware('guest:penyewa');
