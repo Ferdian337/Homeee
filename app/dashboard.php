@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class dashboard extends Model
 {
-	protected $table = 'dummy';
+	protected $table = 'menyewa';
 
      protected $fillable = [
-    	'pendapatan',
-    	'pengunjung',
-    	'kamar',
+     	'tanggal_masuk',
+     	'durasi',
+     	'jumlah_orang',
+     	'jumlah_kamar',
+     	'id_penyewa',
+     	'id_homestay',
+     	'biaya',
+     	'tipe_kamar,'
     ];
 
     protected $cast = [

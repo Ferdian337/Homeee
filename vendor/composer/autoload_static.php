@@ -418,6 +418,7 @@ class ComposerStaticInit16806ee963e455ee5a06b28b3869a8ab
     );
 
     public static $classMap = array (
+        'App\\Charts\\dashboardChart' => __DIR__ . '/../..' . '/app/Charts/dashboardChart.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Homestay' => __DIR__ . '/../..' . '/app/Homestay.php',
@@ -4252,6 +4253,7 @@ class ComposerStaticInit16806ee963e455ee5a06b28b3869a8ab
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'dummySeeder' => __DIR__ . '/../..' . '/database/seeds/dummySeeder.php',
+        'menyewaSeeder' => __DIR__ . '/../..' . '/database/seeds/menyewaSeeder.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
@@ -4322,6 +4324,7 @@ class ComposerStaticInit16806ee963e455ee5a06b28b3869a8ab
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'reviewSeeder' => __DIR__ . '/../..' . '/database/seeds/reviewSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
