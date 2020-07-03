@@ -32,7 +32,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -213,7 +213,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <!-- Dibawah Nama Pengelola beserta foto -->
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Pengelola Homestay</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -343,7 +343,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
+                  <div class="chart-area ">
                     <div id="chartPendapatan"></div>
                     <canvas id="pendapatanChart" width="200" height="65"></canvas>
                   </div>
@@ -360,7 +360,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
+                  <div class="chart-pie pt-2 pb-2">
                    <canvas id="roomChart" width="200" height="120"></canvas>                 
                     <!-- <canvas id="myPieChart"></canvas> -->
                   </div>
@@ -382,7 +382,7 @@
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-4 mb-4">
 
               <!-- Bintang Card Example -->
               <div class="card shadow mb-4">
@@ -413,7 +413,20 @@
                 </div>
               </div>
 
-                     </div>
+            </div>
+               <div class="col-lg-8 mb-4">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Jumlah Pengunjung</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">
+                    <div id="chartPengunjung"></div>
+                    <canvas id="pengunjungChart" width="200" height="65"></canvas>
+                  </div>
+                </div>
+            </div>
+          </div>
           </div>
 
         </div>
@@ -489,6 +502,49 @@ var pendapatanChart = new Chart(ctx, {
             data: dataBarChart,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
+               
+            ],
+            borderColor: [  
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 4
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+// Untuk Bar Chart pengunjung
+var labelBarChart2 = @json($pengunjung->keys());
+var dataBarChart2 = @json($pengunjung->values());
+var ctx = document.getElementById('pengunjungChart').getContext('2d');
+var pendapatanChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labelBarChart2,
+        datasets: [{
+            label: 'Pengunjung',
+            data: dataBarChart2,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
@@ -529,6 +585,7 @@ var pendapatanChart = new Chart(ctx, {
     }
 });
 
+//Untuk Pie Chart Jenis Kamar
 var ctx = document.getElementById('roomChart').getContext('2d');
 var roomChart = new Chart(ctx, {
     type: 'doughnut',

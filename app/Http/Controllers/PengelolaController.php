@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Homestay;
 use App\Pengelola;
+use App\review;
 use Illuminate\Support\Facades\Auth;
 use File;
 use App\RekeningPengelola;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PengelolaController extends Controller
 {
@@ -225,5 +229,63 @@ class PengelolaController extends Controller
         $rekening = RekeningPengelola::find($id);
         $rekening -> delete();
         return redirect('/rekeningpgl');
+    }
+
+    // DUMMY
+    public function TambahKamar()
+    {
+        return view('/pengelola/TambahKamar');
+    }
+
+    public function EditKamar()
+    {
+        return view('/pengelola/EditKamar');
+    }
+
+    public function ReviewPengunjung()
+    {
+        $review = DB::table('reviews')->get();
+        return view('/pengelola/ReviewPengunjung', ['review' => $review]);
+    }
+
+    public function EditDeskripsiUmum()
+    {
+        return view('pengelola/EditDeskripsiUmum');
+    }
+
+    public function DaftarPengunjungSebelum()
+    {
+        $id = '1';
+        $DaftarPengunjung = DB::table('menyewa')
+                            ->select(DB::RAW('*'))
+                            ->whereRAW('tanggal_masuk < NOW()')
+                            ->where('id_homestay', '=', $id)
+                            ->get();
+
+        return view('pengelola/DaftarPengunjung', ['DaftarPengunjung' => $DaftarPengunjung]);
+    }
+
+    public function DaftarPengunjungSekarang()
+    {
+        $id = '1';
+        $DaftarPengunjung = DB::table('menyewa')
+                            ->select(DB::RAW('*'))
+                            ->whereRAW('tanggal_masuk = NOW()')
+                            ->where('id_homestay', '=', $id)
+                            ->get();
+
+        return view('pengelola/DaftarPengunjung', ['DaftarPengunjung' => $DaftarPengunjung]);
+    }
+
+    public function DaftarPengunjungSesudah()
+    {
+        $id = '1';
+        $DaftarPengunjung = DB::table('menyewa')
+                            ->select(DB::RAW('*'))
+                            ->whereRAW('tanggal_masuk > NOW()')
+                            ->where('id_homestay', '=', $id)
+                            ->get();
+
+        return view('pengelola/DaftarPengunjung', ['DaftarPengunjung' => $DaftarPengunjung]);
     }
 }

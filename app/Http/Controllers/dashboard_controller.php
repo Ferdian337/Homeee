@@ -34,7 +34,7 @@ class dashboard_controller extends Controller
 
         // Pendapatan Bulanan
         $pendapatanBulanan = DB::table('menyewa')
-                ->select(DB::RAW('SUM(IFNULL(biaya,0)) biaya'))
+                ->select(DB::RAW('IFNULL(SUM(biaya),0 ) biaya'))
                 ->where('id_homestay', '=',  $id)
                 ->where(function ($query){
                     $query->whereRAW('MONTH(tanggal_masuk) = MONTH(NOW()) AND YEAR(tanggal_masuk) = YEAR(NOW())');
@@ -44,7 +44,7 @@ class dashboard_controller extends Controller
 
         //Pendapatan Tahunan
         $pendapatanTahunan = DB::table('menyewa')
-                ->select(DB::RAW('SUM(biaya) biaya'))
+                ->select(DB::RAW('IFNULL(SUM(biaya),0 ) biaya'))
                 ->where('id_homestay', '=',  $id)
                 ->where(function ($query){
                     $query->whereRAW('YEAR(tanggal_masuk) = YEAR(NOW())');
@@ -53,13 +53,13 @@ class dashboard_controller extends Controller
 
         //Jumlah Pengunjung
         $JumlahPengunjung = DB::table('menyewa')
-                ->select(DB::RAW('SUM(jumlah_orang) pengunjung'))
+                ->select(DB::RAW('IFNULL(SUM(jumlah_orang),0) pengunjung'))
                 ->where('id_homestay', '=',  $id)
                 ->pluck('pengunjung');
 
         // Jumlah Pengunjung akan MEnginap
         $akanMenginap = DB::table('menyewa')
-                ->select(DB::RAW('SUM(jumlah_orang) pengunjung'))
+                ->select(DB::RAW('IFNULL(SUM(jumlah_orang),0) pengunjung'))
                 ->where('id_homestay', '=',  $id)
                 ->where(function ($query){
                     $query->whereRAW('(tanggal_masuk >  NOW())');
@@ -99,6 +99,14 @@ class dashboard_controller extends Controller
                 ->whereRAW('bintang = 1')
                 ->pluck('jmlhBintang1');
 
-        return view('/pengelola/dashboard', compact('biaya', 'tipe_kamar', 'pendapatanBulanan', 'pendapatanTahunan', 'JumlahPengunjung', 'akanMenginap', 'bintang5', 'bintang4', 'bintang3', 'bintang2', 'bintang1'));
+        // Jumlah Pengunjung
+        $pengunjung = DB::table('menyewa')
+                ->select(DB::RAW('MONTH(tanggal_masuk) month'), DB::raw('SUM(jumlah_orang) pengunjung'))
+                ->groupBy('month')
+                ->orderBy('tanggal_masuk')
+                ->where('id_homestay', '=',  $id)
+                ->pluck('pengunjung', 'month');
+
+        return view('/pengelola/dashboard', compact('biaya', 'tipe_kamar', 'pendapatanBulanan', 'pendapatanTahunan', 'JumlahPengunjung', 'akanMenginap', 'bintang5', 'bintang4', 'bintang3', 'bintang2', 'bintang1', 'pengunjung'));
     }
 }   

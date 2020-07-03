@@ -35,6 +35,16 @@ route::get('/hapusrekeningpgl/{id}', 'PengelolaController@hapusrekeningpgl')->mi
 route::get('/kelolaht/detailht/{id}', 'PengelolaController@detailht')->middleware('auth:pengelola');
 route::get('/dashboard', 'dashboard_controller@index');
 
+//dummy
+route::get('/TambahKamar', 'PengelolaController@TambahKamar');
+route::get('/EditKamar', 'PengelolaController@EditKamar');
+route::get('/ReviewPengunjung', 'PengelolaController@ReviewPengunjung');
+route::get('/EditDeskripsiUmum', 'PengelolaController@EditDeskripsiUmum');
+route::get('/DaftarPengunjungSebelum', 'PengelolaController@DaftarPengunjungSebelum');
+route::get('/DaftarPengunjungSekarang', 'PengelolaController@DaftarPengunjungSekarang');
+route::get('/DaftarPengunjungSesudah', 'PengelolaController@DaftarPengunjungSesudah');
+
+
 // route penyewa
 route::get('/daftarpnw', 'PenyewaController@daftarpnw')->middleware('guest:penyewa');
 route::get('/masukpnw', 'PenyewaController@masukpnw')->middleware('guest:penyewa')->name('masukpnw');
